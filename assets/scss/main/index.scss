@@ -1,0 +1,12 @@
+@import '_reset';
+@import 'typography';
+@import 'colors';
+
+body {
+  font-family: $montserrat;
+  color: var(--black);
+  background: var(--white);
+  font-weight: 500;
+  width: 100vw;
+  overflow-x: hidden;
+}
