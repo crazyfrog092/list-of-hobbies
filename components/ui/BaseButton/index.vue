@@ -6,6 +6,12 @@
     @click="$emit('click')"
   >
     <span :class="`icon-${icon}`" />
+    <span
+      v-if="text"
+      class="base-button__text"
+    >
+      {{ text }}
+    </span>
   </button>
 </template>
 
@@ -23,23 +29,36 @@ export default Vue.extend({
       type: String,
       required: true,
     },
+    text: {
+      type: String,
+      default: '',
+    },
   },
 });
 </script>
 
 <style lang="scss" scoped>
 .base-button {
-  width: 56px;
-  min-width: 56px;
-  height: 56px;
+  width: fit-content;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 12px;
-  transition: $transition;
-  background: transparent;
   &:disabled {
     cursor: default;
+  }
+
+  [class^="icon-"], [class*=" icon-"] {
+    min-width: 16px;
+    height: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  &__text {
+    margin-left: 8px;
+    font-size: 14px;
+    color: var(--grey);
   }
 }
 </style>

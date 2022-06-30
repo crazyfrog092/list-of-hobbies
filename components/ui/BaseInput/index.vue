@@ -6,6 +6,7 @@
     :type="type"
     class="base-input"
     @input="input"
+    @keyup.enter="$emit('enter')"
   >
 </template>
 
@@ -52,5 +53,12 @@ export default Vue.extend({
 
 <style lang="scss" scoped>
 .base-input {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid var(--grey);
+  padding: 4px 8px;
+  ::placeholder {
+    color: var(--grey);
+  }
 }
 </style>

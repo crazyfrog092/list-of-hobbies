@@ -36,6 +36,7 @@ module.exports = {
     'no-return-await': ['off'],
     'no-shadow': 'off',
     'no-underscore-dangle': 'off',
+    'max-len': ['error', { code: 115 }],
   },
   settings: {
     'import/resolver': {

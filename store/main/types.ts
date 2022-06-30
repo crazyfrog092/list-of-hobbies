@@ -1,28 +1,32 @@
 import { ActionContext } from 'vuex';
 
 export enum MainMutationTypes {
-  SET_WINDOW_WIDTH = 'SET_WINDOW_WIDTH',
+  SET_MY_HOBBIES = 'SET_MY_HOBBIES',
+  SET_FRIEND_HOBBIES = 'SET_FRIEND_HOBBIES',
 }
 
 export interface MainState {
-  windowWidth: number,
+  myHobbies: Array<string>,
+  friendHobbies: Array<string>,
 }
 
 export interface MainMutations<S = MainState> {
-  [MainMutationTypes.SET_WINDOW_WIDTH](state: S, payload: number): void,
+  [MainMutationTypes.SET_MY_HOBBIES](state: S, payload: Array<string>): void,
+  [MainMutationTypes.SET_FRIEND_HOBBIES](state: S, payload: Array<string>): void,
 }
 
-export type MainAugmentedActionContext = {
-  commit<K extends keyof MainMutations>(
-    key: K,
-    payload: Parameters<MainMutations[K]>[1]
-  ): ReturnType<MainMutations[K]>
-} & Omit<ActionContext<MainState, MainState>, 'commit'>
-
-export interface MainActions {
-  setWindowWidth({ commit }: MainAugmentedActionContext, payload: number): void,
+export interface MainActions<S = MainState> {
+  fetchMyHobbies({ commit }: ActionContext<S, S>): void,
+  fetchFriendHobbies({ commit }: ActionContext<S, S>): void,
+  addMyHobby({ dispatch }: ActionContext<S, S>, payload: string): void,
+  deleteMyHobby({ dispatch }: ActionContext<S, S>, payload: number): void,
+  sendReport(_: ActionContext<S, S>, payload: {
+    value: string,
+    message: string,
+  }): void,
 }
 
 export interface MainGetters<S = MainState> {
-  getWindowWidth(state: S): number,
+  getMyHobbies(state: S): Array<string>,
+  getFriendHobbies(state: S): Array<string>,
 }

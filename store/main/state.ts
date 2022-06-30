@@ -1,7 +1,8 @@
 import { MainState } from './types';
 
 export const state = (): MainState => ({
-  windowWidth: 0,
+  myHobbies: [],
+  friendHobbies: [],
 });
 
 export default state;
